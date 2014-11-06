@@ -49,16 +49,58 @@ if(in_array($action, array('insert', 'update', 'delete')))
 // A ação é de listagem, cadastro ou edição, ou seja, exibir algo na tela para o usuário
 else
 {
-?>
+	// Header template
+ 	include_once('header.phtml');
 
-<!-- Header template -->
-<?php include_once('header.phtml'); ?>
-
-
-
-<!-- Header template -->
-<?php include_once('header.phtml'); ?>
-
-<?php
+	if($action == 'list'){
+		
+		// Monta a sql de consulta ao banco, prepara a execução e processa a mesma
+		$sql = "SELECT id, nome, email, usuario FROM $tableName";
+		$stm = $pdo->prepare( $sql );
+		$stm->execute();
+		// Processa o resultado em um array associativo
+		$results = $stm->fetch( PDO::FETCH_ASSOC );
+		// Carrega o template correspondente
+		include_once('list.phtml');
+		
+	}elseif($action == 'add' || $action == 'edit')
+	{
+		// Dados do usuário
+		$userData = array();
+		if($action == 'edit')
+		{
+			$id = isset($_GET['id'])?$_GET['id']:false;
+			// Monta a sql de consulta ao banco, prepara a execução e processa a mesma
+			$sql = "SELECT id, nome, email, usuario FROM $tableName WHERE id = :id";
+			$stm = $pdo->prepare( $sql );
+			$stm->execute( array( ':id' => $id ) );
+			// Processa o resultado em um array associativo
+			$result = $stm->fetch(PDO::FETCH_ASSOC);
+			if( isset( $result['id'] ) )
+			{
+				$userData = $result;
+				// Carrega o template correspondente
+				include_once('form.phtml');
+			}
+			else
+			{ 
+				// Imprime mensagem de erro
+			?>
+			
+				<h1>Usuário inválido</h1>
+				<p>O registro <?php echo $id;?> não existe no banco de dados</p>
+				<br />
+				<br />
+				<a href="./index.php" title="Retornar a página anterior">Voltar</a>
+				
+			<?php 
+				// Termina a aplicação;
+				exit();
+			}
+		}
+		
+	}
+	// Header template
+	include_once('header.phtml');
 };	
 ?>
