@@ -7,6 +7,7 @@
 			<th>NOME</th>
 			<th>EMAIL</th>
 			<th>USUÁRIO</th>
+			<th>::::</th>
 		</tr>
 	</thead>
 	
@@ -15,7 +16,7 @@
 	<?php if(!isset($results) || count($results) == 0) :?>
 		
 		<tr>
-			<td></td>
+			<td colspan="5">Nenhum usuário cadastrado! <a href="./index.php?doAction=update">[ Cadastrar ]</a></td>
 		</tr>
 		
 	<?php 
@@ -28,6 +29,10 @@
 			<td> <?php echo $row['nome']; ?> </td>
 			<td> <?php echo $row['email']; ?> </td>
 			<td> <?php echo $row['usuario']; ?> </td>
+			<td>
+				<a href="./index.php?doAction=update">[ Editar ] </a> - 
+				<a href="./index.php?doAction=delete">[ Excluir ]</a>
+			</td>
 		</tr>
 	
 	<?php 
@@ -38,3 +43,7 @@
 	</tbody>
 
 </table>
+
+<br />
+
+<a href="./index.php?doAction=update">[ Novo usuário ]</a>
