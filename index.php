@@ -21,6 +21,7 @@ if(in_array($action, array('insert', 'update', 'delete')))
 	// Executa a ação
 	switch($action)
 	{
+		// Novo registro
 		case 'insert':
 			$postData = array(
 				':nome' => $_POST['nome'],
@@ -32,10 +33,14 @@ if(in_array($action, array('insert', 'update', 'delete')))
 			$query = $pdo->prepare( $sql );
 			$query->execute( $postData );
 		break;
+		
+		// Atualizar registro existente
 		case 'update':
 			$postData = $_POST;
 			
 		break;
+		
+		// Excluir registro
 		case 'delete':
 			
 		break;
@@ -46,7 +51,13 @@ else
 {
 ?>
 
+<!-- Header template -->
+<?php include_once('header.phtml'); ?>
 
+
+
+<!-- Header template -->
+<?php include_once('header.phtml'); ?>
 
 <?php
 };	
