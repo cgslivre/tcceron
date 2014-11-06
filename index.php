@@ -1,17 +1,24 @@
 
 <?php
+// Variáveis de acesso ao bando de dados
 $host = 'localhost';
 $dbname = 'nome_do_banco_de_dados';
 $user = 'usuario_do_banco';
 $pass = 'senha_do_banco';
 
+// Cria uma instancia da Super Classe PDO
+// http://php.net/manual/en/book.pdo.php
 $pdo = new PDO("mysql:host=$host;dbname=$dbname;", $user, $pass);
 
-$postData = $_POST;
-if(isset($_GET['doAction']))
+// Verifica se há a variável "doAction" e atribui seu valor a variável "$action"
+$action = isset($_GET['doAction'])?$_GET['doAction']:'list';
+
+// A ação é de manipulação do banco de dados
+if(in_array($action, array('insert', 'update', 'delete')))
 {
-	$action = $_GET['doAction'];
+	// A tabela que será utilizada
 	$tableName = 'tabela_usuarios';
+	// Executa a ação
 	switch($action)
 	{
 		case 'insert':
@@ -34,16 +41,13 @@ if(isset($_GET['doAction']))
 		break;
 	}
 }
+// A ação é de listagem, cadastro ou edição, ou seja, exibir algo na tela para o usuário
+else
+{
 ?>
 
-<html>
-	<head></head>
-	<body>
-	
-	
-	</body>
-</html>
+
 
 <?php
-	endif;	
+};	
 ?>
