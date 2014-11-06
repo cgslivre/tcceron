@@ -76,14 +76,9 @@ else
 			$stm->execute( array( ':id' => $id ) );
 			// Processa o resultado em um array associativo
 			$result = $stm->fetch(PDO::FETCH_ASSOC);
-			if( isset( $result['id'] ) )
+			// Caso não retorne um registro válido
+			if( !isset( $result['id'] ) )
 			{
-				$userData = $result;
-				// Carrega o template correspondente
-				include_once('form.phtml');
-			}
-			else
-			{ 
 				// Imprime mensagem de erro
 			?>
 			
@@ -97,10 +92,13 @@ else
 				// Termina a aplicação;
 				exit();
 			}
+			// Atribui os dados do banco a váriavel $userData
+			$userData = $result;
 		}
-		
+		// Carrega o template correspondente
+		include_once('form.phtml');
 	}
 	// Header template
-	include_once('header.phtml');
+	include_once('footer.phtml');
 };	
 ?>
