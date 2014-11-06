@@ -1,0 +1,40 @@
+<h1>Usuários cadastrados</h1>
+<table>
+
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>NOME</th>
+			<th>EMAIL</th>
+			<th>USUÁRIO</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		
+	<?php if(!isset($results) || count($results) == 0) :?>
+		
+		<tr>
+			<td></td>
+		</tr>
+		
+	<?php 
+	else: 
+		foreach($results as $row):
+	?>
+	
+		<tr>
+			<td> <?php echo $row['id']; ?> </td>
+			<td> <?php echo $row['nome']; ?> </td>
+			<td> <?php echo $row['email']; ?> </td>
+			<td> <?php echo $row['usuario']; ?> </td>
+		</tr>
+	
+	<?php 
+		endforeach;
+	endif; 
+	?>
+		
+	</tbody>
+
+</table>
