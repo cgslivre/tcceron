@@ -1,4 +1,4 @@
-<form method="post" action="index.php<?php echo isset($userData['id'])?"?doAction=update":"insert"; ?>">
+<form method="post" action="index.php?doAction=<?php echo isset($userData['id'])?"update":"insert"; ?>">
 	<fieldset>
 	
 		<p>
