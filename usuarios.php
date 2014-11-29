@@ -9,43 +9,65 @@ $action = isset($_GET['doAction'])?$_GET['doAction']:'list';
 // A tabela que será utilizada
 $tableName = 'tabela_usuarios';
 
+// Url principal da aplicação
+$redirectUrl = 'usuarios.php';
+$redirectUrlQueryString = array();
+
 // A ação é de manipulação do banco de dados
 if(in_array($action, array('insert', 'update', 'delete')))
 {
+	$sql = '';
+	$pdoBindingValues = array();
 	// Executa a ação
 	switch($action)
 	{
 		// Novo registro
 		case 'insert':
-			$postData = array(
+			// Prepara a SQL para inserção no bando
+			$sql = "INSERT INTO $tableName('nome', 'email', 'usuario', 'senha') VALUES(:nome, :email, :usuario, :senha)";
+			// Variáveis(bind) para parseamento pelo PDO
+			$pdoBindingValues = array(
 				':nome' => $_POST['nome'],
 				':email' => $_POST['email'],
 				':usuario' => $_POST['usuario'],
 				':senha' => $_POST['senha']
 			);
-			$sql = "INSERT INTO $tableName('nome', 'email', 'usuario', 'senha') VALUES(:nome, :email, :usuario, :senha)";
-			$query = $pdo->prepare( $sql );
-			$query->execute( $postData );
+			if(db_query($sql, $pdoBI))
+			{
+				
+			}
+			else
+			{
+				
+			}
+			// Define as opções de redirecionamento
+			$redirectUrlQueryString = array(
+				'doAction' => 'add'	
+			);
 		break;
 		
 		// Atualizar registro existente
 		case 'update':
-			$postData = array(
+			$sql = "UPDATE $tableName SET 'nome' = :nome, 'email' = :email, 'usuario' = :usuario WHERE id = :id";
+			$pdoBindingValues = array(
 				':nome' => $_POST['nome'],
 				':email' => $_POST['email'],
 				':usuario' => $_POST['usuario'],
 				':id' => $_GET['id'],
 			);
-			$sql = "UPDATE $tableName SET 'nome' = :nome, 'email' = :email, 'usuario' = :usuario WHERE id = :id";
-			$query = $pdo->prepare( $sql );
-			$query->execute( $postData );
+			$redirectUrlQueryString = array(
+				'doAction' => 'edit',
+				'id' => $_GET['id']
+			);
 		break;
 		
 		// Excluir registro
 		case 'delete':
 			$sql = "DELETE FROM $tableName WHERE id = :id";
-			$query = $pdo->prepare( $sql );
-			$query->execute( array(':id' => $_GET['id']) );	
+			$pdoBindingValues = array(':id' => $_GET['id']);
+			$redirectUrlQueryString = array(
+				'doAction' => 'list'	
+			);
 		break;
 	}
 }
