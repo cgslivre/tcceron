@@ -1,3 +1,8 @@
+<?php
+// Header template
+include_once('header.php');
+?>
+
 <form method="post" action="index.php?doAction=<?php echo isset($userData['id'])?"update":"insert"; ?>">
 	<fieldset>
 	
@@ -28,3 +33,8 @@
 	
 	</fieldset>
 </form>
+
+<?php
+// Header template
+include_once('footer.php');
+?>
