@@ -51,7 +51,7 @@ else
 		// Processa o resultado em um array associativo
 		$results = $stm->fetch( PDO::FETCH_ASSOC );
 		// Carrega o template correspondente
-		include_once('list.phtml');
+		include_once(TPL_PATH.'usuarios/list.phtml');
 		
 	}elseif($action == 'add' || $action == 'edit')
 	{
@@ -86,9 +86,7 @@ else
 			$userData = $result;
 		}
 		// Carrega o template correspondente
-		include_once('form.phtml');
+		include_once(TPL_PATH.'usuarios/form.phtml');
 	}
-	// Header template
-	include_once('footer.phtml');
 };	
 ?>
