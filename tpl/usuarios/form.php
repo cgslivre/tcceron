@@ -1,6 +1,6 @@
 <?php
 // Header template
-include_once('header.php');
+include_once(TPL_PATH.'header.php');
 ?>
 
 <form method="post" action="index.php?doAction=<?php echo isset($userData['id'])?"update":"insert"; ?>">
@@ -36,5 +36,5 @@ include_once('header.php');
 
 <?php
 // Header template
-include_once('footer.php');
+include_once(TPL_PATH.'footer.php');
 ?>
