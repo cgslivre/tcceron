@@ -1,6 +1,6 @@
 <?php
 // Header template
-include_once('header.php');
+include_once(TPL_PATH.'header.php');
 ?>
 
 <h1>Usuários cadastrados</h1>
@@ -55,5 +55,5 @@ include_once('header.php');
 
 <?php
 // Header template
-include_once('footer.php');
+include_once(TPL_PATH.'footer.php');
 ?>
