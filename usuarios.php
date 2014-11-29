@@ -30,13 +30,22 @@ if(in_array($action, array('insert', 'update', 'delete')))
 		
 		// Atualizar registro existente
 		case 'update':
-			$postData = $_POST;
-			
+			$postData = array(
+				':nome' => $_POST['nome'],
+				':email' => $_POST['email'],
+				':usuario' => $_POST['usuario'],
+				':id' => $_GET['id'],
+			);
+			$sql = "UPDATE $tableName SET 'nome' = :nome, 'email' = :email, 'usuario' = :usuario WHERE id = :id";
+			$query = $pdo->prepare( $sql );
+			$query->execute( $postData );
 		break;
 		
 		// Excluir registro
 		case 'delete':
-			
+			$sql = "DELETE FROM $tableName WHERE id = :id";
+			$query = $pdo->prepare( $sql );
+			$query->execute( array(':id' => $_GET['id']) );	
 		break;
 	}
 }
@@ -68,7 +77,7 @@ else
 			// Processa o resultado em um array associativo
 			$result = $stm->fetch(PDO::FETCH_ASSOC);
 			// Caso não retorne um registro válido
-			if( !isset( $result['id'] ) )
+			if( !count( $result ) )
 			{
 				// Imprime mensagem de erro
 				echo '
@@ -81,7 +90,7 @@ else
 				exit();
 			}
 			// Atribui os dados do banco a váriavel $userData
-			$userData = $result;
+			$userData = (array)$result[0];
 		}
 		// Carrega o template correspondente
 		include_once(TPL_PATH.'usuarios/form.phtml');
