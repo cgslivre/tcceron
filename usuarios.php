@@ -6,11 +6,12 @@ require_once('lib/common.php');
 // Verifica se há a variável "doAction" e atribui seu valor a variável "$action"
 $action = isset($_GET['doAction'])?$_GET['doAction']:'list';
 
+// A tabela que será utilizada
+$tableName = 'tabela_usuarios';
+
 // A ação é de manipulação do banco de dados
 if(in_array($action, array('insert', 'update', 'delete')))
 {
-	// A tabela que será utilizada
-	$tableName = 'tabela_usuarios';
 	// Executa a ação
 	switch($action)
 	{
@@ -70,15 +71,12 @@ else
 			if( !isset( $result['id'] ) )
 			{
 				// Imprime mensagem de erro
-			?>
-			
+				echo '
 				<h1>Usuário inválido</h1>
-				<p>O registro <?php echo $id;?> não existe no banco de dados</p>
+				<p>O registro '.$id.' não existe no banco de dados</p>
 				<br />
 				<br />
-				<a href="./index.php" title="Retornar a página anterior">Voltar</a>
-				
-			<?php 
+				<a href="index.php" title="Retornar a página anterior">Voltar</a>';
 				// Termina a aplicação;
 				exit();
 			}
