@@ -21,7 +21,7 @@ include_once(TPL_PATH.'header.php');
 	<?php if(!isset($results) || count($results) == 0) :?>
 		
 		<tr>
-			<td colspan="5">Nenhum usuário cadastrado! <a href="./index.php?doAction=update">[ Cadastrar ]</a></td>
+			<td colspan="5">Nenhum usuário cadastrado! <a href="usuarios.php?doAction=update">[ Cadastrar ]</a></td>
 		</tr>
 		
 	<?php 
@@ -35,8 +35,8 @@ include_once(TPL_PATH.'header.php');
 			<td> <?php echo $row['email']; ?> </td>
 			<td> <?php echo $row['usuario']; ?> </td>
 			<td>
-				<a href="./index.php?doAction=update">[ Editar ] </a> - 
-				<a href="./index.php?doAction=delete">[ Excluir ]</a>
+				<a href="usuarios.php?doAction=update">[ Editar ] </a> - 
+				<a href="usuarios.php?doAction=delete">[ Excluir ]</a>
 			</td>
 		</tr>
 	
@@ -51,7 +51,7 @@ include_once(TPL_PATH.'header.php');
 
 <br />
 
-<a href="./index.php?doAction=update">[ Novo usuário ]</a>
+<a href="usuarios.php?doAction=update">[ Novo usuário ]</a>
 
 <?php
 // Header template
