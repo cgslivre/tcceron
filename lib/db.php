@@ -10,4 +10,16 @@ $pass   = 'senha_do_banco';
 // http://php.net/manual/en/book.pdo.php
 $pdo = new PDO("mysql:host=$host;dbname=$dbname;", $user, $pass);
 
+db_query($sql, $bindValues = array(), &$pdo)
+{
+  	try
+	{
+		$query = $pdo->prepare( $sql );
+		return $query->execute( $bindValues );
+	} 
+	catch($e)
+	{
+		return $e->getMessage().'<br />'.$e->getTrace();
+	}
+}
 ?>
