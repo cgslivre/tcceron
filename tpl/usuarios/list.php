@@ -1,3 +1,6 @@
+// Header template
+include_once('header.phtml');
+
 <h1>Usuários cadastrados</h1>
 <table>
 
