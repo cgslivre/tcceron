@@ -1,5 +1,7 @@
+<?php
 // Header template
-include_once('header.phtml');
+include_once('header.php');
+?>
 
 <h1>Usuários cadastrados</h1>
 <table>
@@ -50,3 +52,8 @@ include_once('header.phtml');
 <br />
 
 <a href="./index.php?doAction=update">[ Novo usuário ]</a>
+
+<?php
+// Header template
+include_once('footer.php');
+?>
