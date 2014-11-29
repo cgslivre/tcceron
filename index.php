@@ -1,7 +1,7 @@
 
 <?php
 // Carrega o arquivo de configurações e funçoes comuns da aplicação
-require_once('common.php');
+require_once('lib/common.php');
 
 // Verifica se há a variável "doAction" e atribui seu valor a variável "$action"
 $action = isset($_GET['doAction'])?$_GET['doAction']:'list';
@@ -42,9 +42,6 @@ if(in_array($action, array('insert', 'update', 'delete')))
 // A ação é de listagem, cadastro ou edição, ou seja, exibir algo na tela para o usuário
 else
 {
-	// Header template
- 	include_once('header.phtml');
-
 	if($action == 'list'){
 		
 		// Monta a sql de consulta ao banco, prepara a execução e processa a mesma
