@@ -3,7 +3,7 @@
 include_once(TPL_PATH.'header.php');
 ?>
 
-<form method="post" action="index.php?doAction=<?php echo isset($userData['id'])?"update":"insert"; ?>">
+<form method="post" action="usuarios.php?doAction=<?php echo isset($userData['id'])?"update":"insert"; ?>">
 	<fieldset>
 	
 		<p>
@@ -28,7 +28,7 @@ include_once(TPL_PATH.'header.php');
 		
 		<p>
 			<button type="submit">Salvar dados</button>
-			<a href="./index.php" title="Cancelar edição">Cancelar</a>
+			<a href="usuarios.php" title="Cancelar edição">Cancelar</a>
 		</p>
 	
 	</fieldset>
