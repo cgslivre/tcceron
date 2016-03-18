@@ -35,7 +35,7 @@ include_once(TPL_PATH.'header.php');
 			<td> <?php echo $row['email']; ?> </td>
 			<td> <?php echo $row['usuario']; ?> </td>
 			<td>
-				<a href="usuarios.php?doAction=update">[ Editar ] </a> - 
+				<a href="usuarios.php?doAction=edit">[ Editar ] </a> - 
 				<a href="usuarios.php?doAction=delete">[ Excluir ]</a>
 			</td>
 		</tr>
@@ -51,7 +51,7 @@ include_once(TPL_PATH.'header.php');
 
 <br />
 
-<a href="usuarios.php?doAction=insert">[ Novo usuário ]</a>
+<a href="usuarios.php?doAction=add">[ Novo usuário ]</a>
 
 <?php
 // Header template
