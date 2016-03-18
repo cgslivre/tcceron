@@ -51,7 +51,7 @@ include_once(TPL_PATH.'header.php');
 
 <br />
 
-<a href="usuarios.php?doAction=update">[ Novo usuário ]</a>
+<a href="usuarios.php?doAction=insert">[ Novo usuário ]</a>
 
 <?php
 // Header template
